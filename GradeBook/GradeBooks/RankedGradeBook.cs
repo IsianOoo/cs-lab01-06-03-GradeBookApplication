@@ -12,7 +12,7 @@ namespace GradeBook.GradeBooks
         }
         public override char GetLetterGrade(double averageGrade)
         {
-            if(StudentCount()>5)
+            if(StudentCount()<5)
             {
                 throw new InvalidOperationException("Not enough students.");
 
@@ -28,6 +28,13 @@ namespace GradeBook.GradeBooks
                     return 'D';
                 else return 'F';
             }
+        }
+        public override void CalculateStatistics()
+        {
+            if (StudentCount() < 5)
+                Console.WriteLine("Ranked grading requires at least 5 students.");
+            else if (StudentCount() >= 5)
+                base.CalculateStatistics();
         }
     }
 }
